@@ -1,10 +1,13 @@
 import tweepy
 import time
+f = open('quotes.txt', encoding="utf8")
 
-auth = tweepy.OAuthHandler("lXT8j2f1NCSu2P4fJMAC6gIw3", "eldIsvpYcv3KcvGf6vSbjhiJMmczuWAwq47UeZaDFSKq0Fpfjs")
-auth.set_access_token("1608864958787293185-ri4QSX0fibyn3vsYTeLoKbsuDCijcq", "NT1DDeGEgNQyuGGz72mM3gW9RsQ4jtJFeMMT5S4ERlqNC")
+
+auth = tweepy.OAuthHandler("KmvzH8BgOgFhbuqWkYMC49cOi", "24R7sZGPtsZrkhjov3WrsfZPXLvnM45fA4bfgMgy4QVCaPrdj7")
+auth.set_access_token("1608864958787293185-KtLrcWIMvPhsEpskHnLHJyOKDsdIQE", "UhTQiRIbsP749C05gOjJZoIk98YSC4lWeF2UWvCzpUFNL")
 
 bot = tweepy.API(auth)
 
-https://realpython.com/twitter-bot-python-tweepy/
-bot.update_status("Hello, this is a test!")
+for line in f.readlines():
+    bot.update_status(line)
+    time.sleep(28800)
