@@ -1,13 +1,15 @@
-import tweepy
-import time
-f = open('quotes.txt', encoding="utf8")
+import os
+
+from flask import Flask
+
+app = Flask(__name__)
 
 
-auth = tweepy.OAuthHandler("KmvzH8BgOgFhbuqWkYMC49cOi", "24R7sZGPtsZrkhjov3WrsfZPXLvnM45fA4bfgMgy4QVCaPrdj7")
-auth.set_access_token("1608864958787293185-KtLrcWIMvPhsEpskHnLHJyOKDsdIQE", "UhTQiRIbsP749C05gOjJZoIk98YSC4lWeF2UWvCzpUFNL")
+@app.route("/")
+def hello_world():
+    name = os.environ.get("NAME", "World")
+    return "Hello {}!".format(name)
 
-bot = tweepy.API(auth)
 
-for line in f.readlines():
-    bot.update_status(line)
-    time.sleep(28800)
+if __name__ == "__main__":
+    app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
